@@ -108,7 +108,7 @@ const Register = () => {
                         <Form.Check type="checkbox" label="Check me out" />
                     </Form.Group>
                     <Form.Group className="mb-3">
-                        <Button href="/login">Don't have an account?</Button>
+                        <Button href="/login">Already have an account?</Button>
                     </Form.Group>
                     <Button 
                         style={{
