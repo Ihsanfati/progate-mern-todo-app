@@ -16,10 +16,11 @@ const TodoItem = (props) => {
 
     const wrapperStyle = {
         display: 'flex',
+        flexDirection: 'row',
         alignItems: 'center',
         border: '2px solid #f4f4f4',
-        fontSize: '24px',
-        padding: '12px'
+        fontSize: '20px',
+        padding: '10px'
     }
 
     const buttonStyle = {

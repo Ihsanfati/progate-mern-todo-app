@@ -3,10 +3,11 @@ import { useState } from "react";
 import { Navbar, NavLink, Nav, Link, Container } from "react-bootstrap";
 import Todos from './Todos';
 import TodoForm from './TodoForm';
-import { MDBContainer } from "mdbreact";
+import SearchAppBar from "./SearchAppBar";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
+
 
 const Dashboard = () => {
     const [todos, setTodos] = useState([
@@ -107,18 +108,8 @@ const Dashboard = () => {
       }
     
       return(
-      <div className='heavy-rain-gradient color-block-5 mb-3 mx-auto z-depth-1-half' style={{textAlign: 'center', padding: '12px'}}>
-          <div>
-              <Navbar bg="dark" variant="dark">
-                  <Container>
-                      <Navbar.Brand href="/">Home</Navbar.Brand>
-                      <Nav className="me-auto">
-                          <Nav.Link href="/logout">Logout</Nav.Link>
-                      </Nav>
-                  </Container>
-              </Navbar>
-          </div>
-          <h1>My Todo List</h1>
+        <div className='Dashboard' style={{textAlign: 'center', padding: '12px'}}>
+          <SearchAppBar addTodo={addTodo}/>
           <TodoForm addTodo={addTodo}/>
           <Todos todos={todos} changeStatus={toggleCompleted} deleteTodo={deleteTodo}/>
         </div>

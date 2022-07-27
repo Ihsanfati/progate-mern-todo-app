@@ -20,7 +20,7 @@ class TodoForm extends React.Component{
     render(){
         console.log(this.state.title);
         return(
-            <div style={{marginBottom: '32px'}}>
+            <div style={{marginTop: '30px', marginBottom: '30px'}}>
                 <form onSubmit={(event) => {this.handleSubmit(event)}}>
                     <input 
                         type='text'
