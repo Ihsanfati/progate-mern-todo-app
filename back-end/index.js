@@ -48,7 +48,7 @@ app.use((req, res, next) => {
 //API endpoints to connect get data from database
 app.get('/', async (req, res) => {
     await connection.query(
-        'SELECT id, email, password FROM users',
+        'SELECT id, username, job, email, password FROM users',
         (error, results) => {
             req.session.userID = results[0].id;
             res.json(results);

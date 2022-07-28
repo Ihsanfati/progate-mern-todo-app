@@ -10,6 +10,11 @@ import { Button } from "@mui/material";
 
 
 const Login = () => {
+    const [apiId, setApiId] = useState('');
+    const [apiUsername, setApiUsername] = useState('');
+    const [apiJob, setApiJob] = useState('');
+    const [apiEmail, setApiEmail] = useState('');
+    const [apiPassword, setApiPassword] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState('');
@@ -35,16 +40,19 @@ const Login = () => {
         const newErrors = [];
 
         axios.get("http://localhost:3001/").then((response) => {
-            const dataAPI = {
-                email: response.data[0].email,
-                password: response.data[0].password
-            }
+            console.log(response.data[0]);
 
-            console.log(dataAPI);
+            setApiId(response.data[0].id);
+            setApiUsername(response.data[0].username);
+            setApiJob(response.data[0].job);
+            setApiEmail(response.data[0].email);
+            setApiPassword(response.data[0].password);
 
-            if(dataAPI.email === email) {
+            console.log(apiId);
+
+            if(apiEmail === email) {
                 console.log("Email correct!");
-                if(dataAPI.password === password) {
+                if(apiPassword === password) {
                     console.log("Password correct!");
                     setStatus(!status);
                 } else {
@@ -66,7 +74,7 @@ const Login = () => {
     }
 
     if(status) {
-        return <Dashboard />
+        return <Dashboard id={apiId} username={apiUsername} job={apiJob} email={apiEmail} password={apiPassword}/>
     } else {
         return(
             <div 
@@ -120,7 +128,7 @@ const Login = () => {
                         variant="contained" 
                         type="submit" 
                         onClick={(event) => {handleFetch(event)}}>
-                        Submit
+                        Submit 
                     </Button>
                 </Form>
             </div>

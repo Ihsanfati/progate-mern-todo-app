@@ -9,8 +9,14 @@ import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
 
 
-const Dashboard = () => {
+const Dashboard = ({id, username, job, email, password}) => {
     const [todos, setTodos] = useState(dataTodo);
+
+    console.log(id);
+    console.log(username);
+    console.log(job);
+    console.log(email);
+    console.log(password);
     
       const toggleCompleted = (todoId) => {
         const updateTodos = todos.map((todo) => {
@@ -51,6 +57,7 @@ const Dashboard = () => {
           <SearchAppBar addTodo={addTodo}/>
           <TodoForm addTodo={addTodo}/>
           <Todos todos={todos} changeStatus={toggleCompleted} deleteTodo={deleteTodo}/>
+          <h1>{username}</h1>
         </div>
       );    
 }
