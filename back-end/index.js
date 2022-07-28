@@ -55,6 +55,17 @@ app.get('/', async (req, res) => {
         }
     )
 });
+app.post('/data', async (req, res) => {
+    console.log(req.body.id);
+    await connection.query(
+        'SELECT id, title, completed FROM todos WHERE users_id = ?',
+        [req.body.id],
+        (error, results) => {
+            console.log(results);
+            res.json(results);
+        }
+    )
+})
 app.post('/', async (req, res) => {
     const fullName = req.body.fullName;
     const job = req.body.job;

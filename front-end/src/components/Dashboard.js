@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Todos from './Todos';
 import TodoForm from './TodoForm';
 import dataTodo from "../data/data";
@@ -7,6 +7,7 @@ import SearchAppBar from "./SearchAppBar";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
+import axios from "axios";
 
 
 const Dashboard = ({id, username, job, email, password}) => {
@@ -17,6 +18,12 @@ const Dashboard = ({id, username, job, email, password}) => {
     console.log(job);
     console.log(email);
     console.log(password);
+
+    useEffect(() => {
+      axios.post("http://localhost:3001/data", {id}).then((response) => {
+        console.log(response.data);
+      })
+    })
     
       const toggleCompleted = (todoId) => {
         const updateTodos = todos.map((todo) => {
