@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Todos from './Todos';
 import TodoForm from './TodoForm';
-import dataTodo from "../data/data";
 import SearchAppBar from "./SearchAppBar";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
@@ -11,7 +10,7 @@ import axios from "axios";
 
 
 const Dashboard = ({id, username, job, email, password}) => {
-    const [todos, setTodos] = useState(dataTodo);
+    const [todos, setTodos] = useState([]);
 
     console.log(id);
     console.log(username);
@@ -22,8 +21,10 @@ const Dashboard = ({id, username, job, email, password}) => {
     useEffect(() => {
       axios.post("http://localhost:3001/data", {id}).then((response) => {
         console.log(response.data);
+        setTodos(response.data);
+        console.log(todos);
       })
-    })
+    }, []);
     
       const toggleCompleted = (todoId) => {
         const updateTodos = todos.map((todo) => {
