@@ -29,7 +29,7 @@ const Dashboard = ({id, username, job, email, password}) => {
       const toggleCompleted = (todoId) => {
         const updateTodos = todos.map((todo) => {
           if(todo.id === todoId) {
-            todo.completed = !todo.completed;
+            todo.completed = 1;
           }
           return todo; 
         })
@@ -49,15 +49,16 @@ const Dashboard = ({id, username, job, email, password}) => {
         const arrTodos = todos;
         if(todoTitle === ''){
           return
+        } else {
+          const users_id = id;
+          const todos_id = arrTodos.length + 1;
+          const title = todoTitle;
+          const completed = 0;
+          axios.post("http://localhost:3001/data/insert", {users_id, todos_id, title, completed}).then((response) => {
+            console.log(response);
+          });
+          console.log("New ToDo has been added...");
         }
-        const newTodos = {
-          'id': arrTodos.length + 1,
-          'title': todoTitle,
-          'completed': false
-        }
-        const updateTodos = arrTodos.concat(newTodos);
-        setTodos(updateTodos);
-        console.log("New ToDo has been added...");
       }
     
       return(

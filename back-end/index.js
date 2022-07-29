@@ -58,8 +58,28 @@ app.get('/', async (req, res) => {
 app.post('/data', async (req, res) => {
     console.log(req.body.id);
     await connection.query(
-        'SELECT id, title, completed FROM todos WHERE users_id = ?',
+        'SELECT users_id, id, title, completed FROM todos WHERE users_id = ?',
         [req.body.id],
+        (error, results) => {
+            console.log(results);
+            res.json(results);
+        }
+    )
+});
+app.post('/data/insert', async (req, res) => {
+    const users_id = req.body.users_id;
+    const id = req.body.todos_id;
+    const title =  req.body.title;
+    const completed = req.body.completed;
+
+    console.log(users_id);
+    console.log(id);
+    console.log(title);
+    console.log(completed);
+
+    await connection.query(
+        'INSERT INTO todos (users_id, id, title, completed) VALUES (?, ?, ?, ?)',
+        [users_id, id, title, completed],
         (error, results) => {
             console.log(results);
             res.json(results);
