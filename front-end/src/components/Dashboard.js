@@ -29,7 +29,11 @@ const Dashboard = ({id, username, job, email, password}) => {
       const toggleCompleted = (todoId) => {
         const updateTodos = todos.map((todo) => {
           if(todo.id === todoId) {
+            if(todo.completed === 0)
             todo.completed = 1;
+            else {
+              todo.completed = 0;
+            }
           }
           return todo; 
         })
@@ -37,9 +41,12 @@ const Dashboard = ({id, username, job, email, password}) => {
         setTodos(updateTodos);
       }
       
-      const deleteTodo = (todoId) => {
+      const deleteTodo = (todoId, title) => {
         const updateStates = todos.filter((todo) => {
           return todo.id !== todoId;
+        });
+        axios.post("http://localhost:3001/data/delete", {id, title}).then((response) => {
+          console.log(response);
         })
         console.log(updateStates);
         setTodos(updateStates);

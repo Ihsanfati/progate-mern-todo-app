@@ -36,7 +36,7 @@ const TodoItem = (props) => {
         <div style={wrapperStyle}>
             <input type={'checkbox'} onChange={() => {props.changeStatus(props.id)}}></input>
             <p style={getStyle()} key={props.id}>{props.title}</p>
-            <button style={buttonStyle} onClick={() => {props.deleteTodo(props.id)}}>x</button>
+            <button style={buttonStyle} onClick={() => {props.deleteTodo(props.id, props.title)}}>x</button>
         </div>
     )
 }

@@ -2,6 +2,7 @@ const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
 const session = require('express-session');
+const { response } = require('express');
 
 const app = express();
 
@@ -80,6 +81,23 @@ app.post('/data/insert', async (req, res) => {
     await connection.query(
         'INSERT INTO todos (users_id, id, title, completed) VALUES (?, ?, ?, ?)',
         [users_id, id, title, completed],
+        (error, results) => {
+            console.log(results);
+            res.json(results);
+        }
+    )
+});
+app.post('/data/delete', async (req, res) => {
+    const users_id = req.body.id;
+    const title = req.body.title;
+
+    console.log("deleting...");
+    console.log(users_id);
+    console.log(title);
+
+    await connection.query(
+        'DELETE FROM todos WHERE users_id = ? AND title = ?',
+        [users_id, title],
         (error, results) => {
             console.log(results);
             res.json(results);
