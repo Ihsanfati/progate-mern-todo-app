@@ -57,6 +57,10 @@ const Dashboard = ({id, username, job, email, password}) => {
           axios.post("http://localhost:3001/data/insert", {users_id, todos_id, title, completed}).then((response) => {
             console.log(response);
           });
+          axios.post("http://localhost:3001/data", {id}).then((response) => {
+            console.log(response.data);
+            setTodos(response.data);
+          })
           console.log("New ToDo has been added...");
         }
       }

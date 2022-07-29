@@ -58,7 +58,7 @@ app.get('/', async (req, res) => {
 app.post('/data', async (req, res) => {
     console.log(req.body.id);
     await connection.query(
-        'SELECT users_id, id, title, completed FROM todos WHERE users_id = ?',
+        'SELECT * FROM todos WHERE users_id = ?',
         [req.body.id],
         (error, results) => {
             console.log(results);
