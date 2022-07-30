@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 class TodoForm extends React.Component{
     state = {
@@ -24,11 +24,11 @@ class TodoForm extends React.Component{
                 <form onSubmit={(event) => {this.handleSubmit(event)}}>
                     <input 
                         type='text'
-                        placeholder='Add your ToDo'
+                        placeholder='   write down what you want to do'
                         style={{height: '66px', width: '33%', fontSize: '16px'}}
                         onChange={(event) => {this.handleChange(event)}}
                     />
-                    <button style={{height: '72px', fontSize: '16px'}}>Add ToDo</button>
+                    <button className='button-add-todo' style={{height: '65px', fontSize: '16px', marginLeft: '5px'}}>Add ToDo</button>
                 </form>
             </div>
         )
