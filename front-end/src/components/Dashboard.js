@@ -3,6 +3,7 @@ import axios from "axios";
 import Login from "./Login";
 import Todos from './Todos';
 import TodoForm from './TodoForm';
+import LoginAlerts from './LoginAlerts';
 import SearchAppBar from "./SearchAppBar";
 import { useState, useEffect } from "react";
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -84,6 +85,7 @@ const Dashboard = ({id, username, job, email, password}) => {
         return(
           <div className='Dashboard' style={{textAlign: 'center', padding: '12px'}}>
             <SearchAppBar handleLog={handleLog}/>
+            <LoginAlerts />
             <TodoForm addTodo={addTodo}/>
             <Todos todos={todos} changeStatus={toggleCompleted} deleteTodo={deleteTodo}/>
           <h1>{username}</h1>
