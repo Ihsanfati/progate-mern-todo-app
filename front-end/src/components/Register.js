@@ -9,6 +9,11 @@ import TextField from '@mui/material/TextField';
 import { Button } from "@mui/material";
 
 const Register = () => {
+    const [apiId, setApiId] = useState('');
+    const [apiUsername, setApiUsername] = useState('');
+    const [apiJob, setApiJob] = useState('');
+    const [apiEmail, setApiEmail] = useState('');
+    const [apiPassword, setApiPassword] = useState('');
     const [fullName, setFullName] = useState('');
     const [job, setJob] = useState('');
     const [email, setEmail] = useState('');
@@ -42,11 +47,19 @@ const Register = () => {
             console.log(response);
         });
 
+        axios.get("http://localhost:3001/").then((response) => {
+            console.log(response.data[0]);
+            setApiId(response.data[0].id);
+            setApiUsername(response.data[0].username);
+            setApiJob(response.data[0].job);
+            setApiEmail(response.data[0].email);
+            setApiPassword(response.data[0].password);
+        });
         setStatus(true);
     }
 
     if(status){
-        return <Dashboard />
+        return <Dashboard id={apiId} username={apiUsername} job={apiJob} email={apiEmail} password={apiPassword}/>
     } else {
         return(
             <div className='App' 
