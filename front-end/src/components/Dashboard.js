@@ -1,15 +1,18 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import axios from "axios";
+import Login from "./Login";
 import Todos from './Todos';
 import TodoForm from './TodoForm';
 import SearchAppBar from "./SearchAppBar";
+import { useState, useEffect } from "react";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
-import axios from "axios";
+
 
 
 const Dashboard = ({id, username, job, email, password}) => {
+    const [log, setLog] = useState(true);
     const [todos, setTodos] = useState([]);
 
     console.log(id);
@@ -71,15 +74,24 @@ const Dashboard = ({id, username, job, email, password}) => {
           console.log("New ToDo has been added...");
         }
       }
-    
-      return(
-        <div className='Dashboard' style={{textAlign: 'center', padding: '12px'}}>
-          <SearchAppBar addTodo={addTodo}/>
-          <TodoForm addTodo={addTodo}/>
-          <Todos todos={todos} changeStatus={toggleCompleted} deleteTodo={deleteTodo}/>
+
+      const handleLog = () => {
+        setLog(!log);
+        console.log("clicked");
+      }
+
+      if(log){
+        return(
+          <div className='Dashboard' style={{textAlign: 'center', padding: '12px'}}>
+            <SearchAppBar handleLog={handleLog}/>
+            <TodoForm addTodo={addTodo}/>
+            <Todos todos={todos} changeStatus={toggleCompleted} deleteTodo={deleteTodo}/>
           <h1>{username}</h1>
         </div>
-      );    
+        );
+      } else {
+        return <Login />
+      }
 }
 
 export default Dashboard;
